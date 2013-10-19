@@ -37,7 +37,24 @@ public class PageRankTask1 {
 		 * Utilisez random.nextDouble() pour générer un réel aléatoire
 		 * et random.nextInt(int n) pour générer un entier aléatoire.
 		 */
-		return 0;
+		
+		double damping = 0.9;
+		
+		double dampingChoice = random.nextDouble();
+		
+		if(dampingChoice > damping)
+		{
+			//On saute alors vers une page aleatoire
+			return random.nextInt(net.length);
+		}
+		else
+		{
+			//On prend un lien de la page de face aleatoire
+			int[] pageLinks = net[currentPage];
+			int linkChoice = random.nextInt(pageLinks.length);
+			
+			return pageLinks[linkChoice];
+		}
 	}
 
 	public static String visualizeVisit(int page, int totalPageNum) {
