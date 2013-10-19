@@ -29,7 +29,18 @@ public class PageRankTask1 {
 
 	public static int[] randomSurfer(int[][] net, int steps) {  
 		/* Méthode à coder */
-		return null;
+		
+		int[] pages = new int[steps];
+		
+		//on commence a la page 0 
+		pages[0] = 0;
+		
+		for(int i = 1; i < steps; ++i)
+		{
+			pages[i] = getNextPage(net, pages[i-1]);
+		}
+		
+		return pages;
 	}
 	
 	public static int getNextPage(int[][] net, int currentPage) {
@@ -59,6 +70,21 @@ public class PageRankTask1 {
 
 	public static String visualizeVisit(int page, int totalPageNum) {
 		/* Méthode à coder */
-		return "";
+		
+		String result = "";
+		
+		for(int i = 0; i < totalPageNum; i++)
+		{
+			if(i ==  page)
+			{
+				result += "x";
+			}
+			else
+			{
+				result += "-";
+			}
+		}
+		
+		return result;
 	}
 }
