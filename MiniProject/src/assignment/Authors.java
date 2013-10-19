@@ -8,12 +8,12 @@ public class Authors {
 	 */
 	
 	/* Etudiant 1 */
-	public final static String NAME1 = "";
-	public final static int SCIPER1 = 0;
+	public final static String NAME1 = "Lauriane Mollier";
+	public final static int SCIPER1 = 227311;
 	
 	/* Etudiant 2 - laissez tel quel si vous avez codé le projet tout seul */
-	public final static String NAME2 = "";
-	public final static int SCIPER2 = 0;
+	public final static String NAME2 = "Marius Rosset";
+	public final static int SCIPER2 = 236522;
 
 	/* Ne codez rien dans cette classe ! */
 	
