@@ -2,6 +2,7 @@ package assignment;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class PageRankTask2 {
 
@@ -23,13 +24,53 @@ public class PageRankTask2 {
 	}
 
 	public static int[] randomSurfer(int[][] net) {  	
-		/* Copiez/collez et adaptez votre solution à la tâche 1 */
-		return null;
+		
+		Scanner keyb = new Scanner(System.in);
+		
+		//Ask for the number of steps
+		System.out.println("Entrez le nombre de pas : ");
+		int steps = keyb.nextInt();
+		
+		//Ask for the damping coefficient
+		System.out.println("Entrez le facteur de damping : ");
+		double damping = keyb.nextDouble();
+		
+		int[] pages = new int[steps];
+
+		if(net.length > 0 && steps > 0)
+		{
+			//We start on page 0
+			pages[0] = 0;
+		}
+
+		for(int i = 1; i < steps; ++i)
+		{
+			pages[i] = getNextPage(net, pages[i-1], damping);
+		}
+
+		return pages;
 	}
 
 	public static int getNextPage(int[][] net, int currentPage, double damping) {
-		/* Copiez/collez et adaptez votre solution à la tâche 1 */
-		return 0;
+
+		double dampingChoice = random.nextDouble();
+
+		int[] pageLinks = net[currentPage];
+		
+		if(dampingChoice < damping && pageLinks.length != 0)
+		{
+			//Take a random links from the page
+			
+			
+			int linkChoice = random.nextInt(pageLinks.length);
+
+			return pageLinks[linkChoice];
+		}
+		else
+		{
+			//Take a random url int the whole network
+			return random.nextInt(net.length);
+		}
 	}
 
 }

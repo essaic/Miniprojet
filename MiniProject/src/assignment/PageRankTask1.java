@@ -5,7 +5,7 @@ import java.util.Random;
 public class PageRankTask1 {
 
 	/* Utilisez cet objet pour générer des nombres aléatoires*/
-	public static Random random = new Random(2013);     
+	public static Random random = new Random(43218);     
 
 	public static void main(String[] argv) {   
 		/*Réseau de pages exemple*/
@@ -28,7 +28,6 @@ public class PageRankTask1 {
 	}
 
 	public static int[] randomSurfer(int[][] net, int steps) {  
-		/* Méthode à coder */
 
 		int[] pages = new int[steps];
 
@@ -47,10 +46,6 @@ public class PageRankTask1 {
 	}
 
 	public static int getNextPage(int[][] net, int currentPage) {
-		/* Méthode à coder
-		 * Utilisez random.nextDouble() pour générer un réel aléatoire
-		 * et random.nextInt(int n) pour générer un entier aléatoire.
-		 */
 
 		//The damping coefficient
 		double damping = 0.9;
@@ -77,7 +72,6 @@ public class PageRankTask1 {
 	}
 
 	public static String visualizeVisit(int page, int totalPageNum) {
-		/* Méthode à coder */
 
 		String result = "";
 
