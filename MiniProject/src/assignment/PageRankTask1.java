@@ -58,7 +58,6 @@ public class PageRankTask1 {
 		{
 			//Take a random links from the page
 			
-			
 			int linkChoice = random.nextInt(pageLinks.length);
 
 			return pageLinks[linkChoice];
