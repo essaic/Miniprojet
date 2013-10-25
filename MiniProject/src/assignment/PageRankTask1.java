@@ -53,11 +53,11 @@ public class PageRankTask1 {
 		double dampingChoice = random.nextDouble();
 
 		int[] pageLinks = net[currentPage];
-		
+
 		if(dampingChoice < damping && pageLinks.length != 0)
 		{
 			//Take a random links from the page
-			
+
 			int linkChoice = random.nextInt(pageLinks.length);
 
 			return pageLinks[linkChoice];
