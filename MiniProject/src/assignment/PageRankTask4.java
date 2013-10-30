@@ -5,102 +5,102 @@ import java.util.Random;
 
 public class PageRankTask4 {
 
-        /*
-        RÉPONSES À LA QUESTION DE LA TÂCHE 4.D :
-                - QUELLE MÉTHODE NÉCESSITE LE MOINS D'ITÉRATIONS POUR OBTENIR
-                UN PAGERANK PRÉCIS ?
-                - RÉPONSE :
+         /*
+        Réponses à la question de la tâche 4.d :
+                - Quelle méthode nécessite le moins d'itérations pour obtenir
+                un PageRank précis ?
+                - Réponse :
                 
-                - POURQUOI, SELON VOUS ?
-                - RÉPONSE :
+                - Pourquoi, selon vous ?
+                - Réponse :
                 
         */
 
-        /* UTILISEZ CET OBJET POUR GÉNÉRER DES NOMBRES ALÉATOIRES*/
+        /* Utilisez cet objet pour générer des nombres aléatoires*/
         
-        PUBLIC STATIC VOID MAIN(STRING[] ARGV) {
-                /*RÉSEAU DE PAGES EXEMPLE*/
-                INT [][] NET = {
-                        { 1, 2 }, //PAGE 0
-                        { 2, 2, 4}, //PAGE 1
-                        { 4 }, //PAGE 2
-                        { 0, 0}, //PAGE 3
-                        { 1, 2 , 4} //PAGE 4
+        public static void main(String[] argv) {
+                /*Réseau de pages exemple*/
+                int [][] net = {
+                        { 1, 2 }, //page 0
+                        { 2, 2, 4}, //page 1
+                        { 4 }, //page 2
+                        { 0, 0}, //page 3
+                        { 1, 2 , 4} //page 4
                 };
                 
-                SYSTEM.OUT.PRINTLN("ESTIMATION DU PAGERANK (RANDOM WALK - 25 ITÉRATIONS - DAMPING 0.9) : ");
-                INT[] PATH = PAGERANKTASK1.RANDOMSURFER(NET, 25);
-                SYSTEM.OUT.PRINTLN(ARRAYS.TOSTRING(PAGERANKTASK3.COMPUTEPAGERANK(PATH, NET.LENGTH)));
+                System.out.println("Estimation du PageRank (random walk - 25 itérations - damping 0.9) : ");
+                int[] path = PageRankTask1.randomSurfer(net, 25);
+                System.out.println(Arrays.toString(PageRankTask3.computePageRank(path, net.length)));
 
-                SYSTEM.OUT.PRINTLN("ESTIMATION DU PAGERANK (MÉTHODE MATRICIELLE) - 25 ITÉRATIONS - DAMPING 0.9 : ");
-                SYSTEM.OUT.PRINTLN(ARRAYS.TOSTRING(ESTIMATEPAGERANK(NET, 25, 0.9)));    
+                System.out.println("Estimation du PageRank (méthode matricielle) - 25 itérations - damping 0.9 : ");
+                System.out.println(Arrays.toString(estimatePageRank(net, 25, 0.9)));    
                 
         }
 
 
-        PUBLIC STATIC DOUBLE[] ESTIMATEPAGERANK(INT[][] NET, INT STEPS, DOUBLE DAMPINGFACTOR) {
-                /* MÉTHODE À CODER */
+        public static double[] estimatePageRank(int[][] net, int steps, double dampingFactor) {
+                /* Méthode à coder */
         
-                RETURN PAGERANKITERATIONS(COMPUTETRANSITIONSMATRIX(NET,DAMPINGFACTOR), STEPS);
+                return pageRankIterations(computeTransitionsMatrix(net,dampingFactor), steps);
         }
 
-        PUBLIC STATIC DOUBLE[][] COMPUTETRANSITIONSMATRIX(INT[][] NET, DOUBLE DAMPINGFACTOR) {
-                /* MÉTHODE À CODER */
+        public static double[][] computeTransitionsMatrix(int[][] net, double dampingFactor) {
+                /* Méthode à coder */
                 
-                DOUBLE[][] TRANSITIONS = NEW DOUBLE[NET.LENGTH][NET.LENGTH];
+                double[][] transitions = new double[net.length][net.length];
                 
-                FOR(INT I = 0; I<NET.LENGTH; ++I ){ 
-					FOR(INT J = 0; J<NET[I].LENGTH; ++J ){
-						TRANSITIONS[I][NET[I][J]]++;
+                for(int i = 0; i<net.length; ++i ){ 
+					for(int j = 0; j<net[i].length; ++j ){
+						transitions[i][net[i][j]]++;
 					}
 				}
                 
-                FOR(INT I = 0; I<NET.LENGTH; ++I ){
-                	INT NBPAGEREF = 0;
-                	FOR(INT K = 0; K <NET.LENGTH; ++K ){
-						IF(TRANSITIONS[I][K] != 0){
-							++NBPAGEREF;
+                for(int i = 0; i<net.length; ++i ){
+                	int nbPageRef = 0;
+                	for(int k = 0; k <net.length; ++k ){
+						if(transitions[i][k] != 0){
+							++nbPageRef;
 						}
                 	}
-					FOR(INT J = 0; J<NET.LENGTH; ++J ){
-						TRANSITIONS[I][J] = TRANSITIONS[I][J] * DAMPINGFACTOR / NBPAGEREF  + (1 - DAMPINGFACTOR)/NET.LENGTH;
+					for(int j = 0; j<net.length; ++j ){
+						transitions[i][j] = transitions[i][j] * dampingFactor / nbPageRef  + (1 - dampingFactor)/net.length;
 					}
 				}    
                 
       
                 
-                RETURN TRANSITIONS;
+                return transitions;
         }
 
-        PUBLIC STATIC DOUBLE[] PAGERANKITERATIONS(DOUBLE[][] TRANSITIONS, INT STEPS) {
-                /* METHODE À CODER */
-        		DOUBLE[] TABLE = NEW DOUBLE[TRANSITIONS.LENGTH];
-        		TABLE[0] = 1.0;
+        public static double[] pageRankIterations(double[][] transitions, int steps) {
+                /* Methode à coder */
+        		double[] table = new double[transitions.length];
+        		table[0] = 1.0;
         		
         		
-        		FOR(INT PAS = 0; PAS <STEPS; ++PAS){
-        			DOUBLE[] TABLEDECALCUL = NEW DOUBLE[TRANSITIONS.LENGTH];
+        		for(int pas = 0; pas <steps; ++pas){
+        			double[] tableDeCalcul = new double[transitions.length];
         			
-        			FOR(INT I=0; I<TRANSITIONS.LENGTH; ++I){
-        				TABLEDECALCUL[I] = TABLE[I];
+        			for(int i=0; i<transitions.length; ++i){
+        				tableDeCalcul[i] = table[i];
         			}
      
-        			FOR(INT I= 0; I < TRANSITIONS.LENGTH; ++I){
-        				DOUBLE SOMME = 0.0;
-        				FOR(INT J= 0; J < TRANSITIONS.LENGTH; ++J){
-            				SOMME += TABLE[J] * TRANSITIONS[J][I];
+        			for(int i= 0; i < transitions.length; ++i){
+        				double somme = 0.0;
+        				for(int j= 0; j < transitions.length; ++j){
+            				somme += table[j] * transitions[j][i];
             			}
-        				TABLEDECALCUL[I]= SOMME;
+        				tableDeCalcul[i]= somme;
         			}
         			
-        			FOR(INT I=0; I<TRANSITIONS.LENGTH; ++I){
-        				TABLE[I] = TABLEDECALCUL[I];	
+        			for(int i=0; i<transitions.length; ++i){
+        				table[i] = tableDeCalcul[i];	
         			}
         			
         		}
         	
         			 
-        		RETURN TABLE;
+        		return table;
         }
 
 }
