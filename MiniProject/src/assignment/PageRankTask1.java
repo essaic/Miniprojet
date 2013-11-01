@@ -5,7 +5,7 @@ import java.util.Random;
 public class PageRankTask1 {
 
 	/* Utilisez cet objet pour générer des nombres aléatoires*/
-	public static Random random = new Random(43218);     
+	public static Random random = new Random(2013);     
 
 	public static void main(String[] argv) {   
 		/*Réseau de pages exemple*/

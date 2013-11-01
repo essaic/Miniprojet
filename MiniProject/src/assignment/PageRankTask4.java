@@ -40,7 +40,6 @@ public class PageRankTask4 {
 
         public static double[] estimatePageRank(int[][] net, int steps, double dampingFactor) {
                 /* Méthode à coder */
-        
                 return pageRankIterations(computeTransitionsMatrix(net,dampingFactor), steps);
         }
 
@@ -66,9 +65,6 @@ public class PageRankTask4 {
 						transitions[i][j] = transitions[i][j] * dampingFactor / nbPageRef  + (1 - dampingFactor)/net.length;
 					}
 				}    
-                
-      
-                
                 return transitions;
         }
 
@@ -77,14 +73,16 @@ public class PageRankTask4 {
         		double[] table = new double[transitions.length];
         		table[0] = 1.0;
         		
-        		
-        		for(int pas = 0; pas <steps; ++pas){
+        		// intere le calcule pas fois 
+        		for(int pas = 0; pas < steps; ++pas){
         			double[] tableDeCalcul = new double[transitions.length];
         			
+        			//creer une nouvelle matrice necessaire pour le calcule
         			for(int i=0; i<transitions.length; ++i){
         				tableDeCalcul[i] = table[i];
         			}
-     
+        			
+        			//calcule la moultiplication
         			for(int i= 0; i < transitions.length; ++i){
         				double somme = 0.0;
         				for(int j= 0; j < transitions.length; ++j){
@@ -96,7 +94,6 @@ public class PageRankTask4 {
         			for(int i=0; i<transitions.length; ++i){
         				table[i] = tableDeCalcul[i];	
         			}
-        			
         		}
         	
         			 
