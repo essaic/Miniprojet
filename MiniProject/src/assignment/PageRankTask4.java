@@ -30,7 +30,10 @@ public class PageRankTask4 {
 				{ 1, 2 , 4} //page 4
 		};
 
-
+		System.out.println("Estimation du PageRank (random walk - 25 itérations - damping 0.9) : ");
+		int[] path = PageRankTask1.randomSurfer(net, 25);
+		System.out.println(Arrays.toString(PageRankTask3.computePageRank(path, net.length)));
+		
 		System.out.println("Estimation du PageRank (méthode matricielle) - 25 itérations - damping 0.9 : ");
 		System.out.println(Arrays.toString(estimatePageRank(net, 25, 0.9)));
 	}
@@ -56,7 +59,7 @@ public class PageRankTask4 {
 		for(int i = 0; i<net.length; ++i ){
 			double nbPageRef = 0;
 			
-			// compte le nombre de page référencé
+			// compte le nombre de pages references
 			for(int k = 0; k <net.length; ++k ){
 				nbPageRef += transitions[i][k];
 			} 
@@ -73,11 +76,11 @@ public class PageRankTask4 {
 		double[] table = new double[transitions.length];
 		table[0] = 1.0;
 
-		// intere le calcule pas fois
+		// itere le calcule pas fois
 		for(int pas = 0; pas < steps; ++pas){
 			double[] tableDeCalcul = new double[transitions.length];
 
-			//creer une nouvelle matrice necessaire pour le calcule
+			//cree une nouvelle matrice necessaire pour le calcule
 			for(int i=0; i<transitions.length; ++i){
 				tableDeCalcul[i] = table[i];
 			}

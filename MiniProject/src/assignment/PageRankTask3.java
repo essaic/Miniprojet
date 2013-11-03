@@ -44,8 +44,10 @@ public class PageRankTask3 {
 
 	public static int[] randomSurfer(int[][] net, int steps) {  
 		/* Copiez/collez votre solution à la tâche 1 */
+		
 		int[] pages = new int[steps];
 
+		//Avoid errors
 		if(net.length > 0 && steps > 0)
 		{
 			//We start on page 0
@@ -62,6 +64,7 @@ public class PageRankTask3 {
 
 	public static int getNextPage(int[][] net, int currentPage) {
 		/* Copiez/collez votre solution à la tâche 1 */
+		
 		//The damping coefficient
 		double damping = 0.9;
 
@@ -90,6 +93,7 @@ public class PageRankTask3 {
 
 		double[] PageRank = new double[pageCount];
 
+		//Compute the pageRank for each page in path[]
 		for(int i = 0; i < pageCount ; i++)
 		{
 			PageRank[i] = ( (double)countVisit(path, i) ) / ((double)path.length);
@@ -106,6 +110,7 @@ public class PageRankTask3 {
 
 		double diff = 0.0;
 
+		//Go through the list to find the maximum difference
 		for (int i = 0 ; i < minLength ; i++)
 		{
 			double actualDiff = Math.abs(rank1[i] - rank2[i]);
@@ -123,7 +128,10 @@ public class PageRankTask3 {
 		
 		//number of steps
 		int k = 0;
+		
 		double[] ranks;
+		
+		//Repeat the pageRank algorithm until we found a accurate result
 		do
 		{
 			k++;
@@ -139,6 +147,7 @@ public class PageRankTask3 {
 	public static int countVisit(int[] path, int page) {
 		/* Méthode à coder */
 
+		//Count how many times a page has been visited
 		int count = 0;
 
 		for(int i : path)

@@ -37,6 +37,7 @@ public class PageRankTask2 {
 		
 		int[] pages = new int[steps];
 
+		//Avoid errors
 		if(net.length > 0 && steps > 0)
 		{
 			//We start on page 0
@@ -60,8 +61,6 @@ public class PageRankTask2 {
 		if(dampingChoice < damping && pageLinks.length != 0)
 		{
 			//Take a random links from the page
-			
-			
 			int linkChoice = random.nextInt(pageLinks.length);
 
 			return pageLinks[linkChoice];

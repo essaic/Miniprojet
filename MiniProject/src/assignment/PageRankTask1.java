@@ -31,6 +31,7 @@ public class PageRankTask1 {
 
 		int[] pages = new int[steps];
 
+		//Avoid errors
 		if(net.length > 0 && steps > 0)
 		{
 			//We start on page 0
@@ -57,7 +58,6 @@ public class PageRankTask1 {
 		if(dampingChoice < damping && pageLinks.length != 0)
 		{
 			//Take a random links from the page
-
 			int linkChoice = random.nextInt(pageLinks.length);
 
 			return pageLinks[linkChoice];
@@ -74,6 +74,7 @@ public class PageRankTask1 {
 
 		String result = "";
 
+		//affiche la position de la page visitee dans le reseau
 		for(int i = 0; i < totalPageNum; i++)
 		{
 			if(i ==  page)
